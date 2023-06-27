@@ -176,13 +176,13 @@ const Grid: FC = () => {
   // }]
 
   const options: IPropsOptions = {
-    fixedSize: 3,
-    scalable: true,
-    // verticalScroll: {
-    //   enable: true,
-    //   type: 'inner'
-    //   // height: 400,
-    // }
+    // fixedSize: 3,
+    // scalable: true,
+    verticalScroll: {
+      enable: true,
+      type: 'outer'
+      // height: 400,
+    }
   }
 
   const orderBy = useRef(OrderType.DESC)
