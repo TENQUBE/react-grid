@@ -55,9 +55,9 @@ type RowType = string | number | boolean | ILinkRows | Array<string | number> | 
 interface IPropsOptions {
     scalable?: boolean | IPropsScalableOption;
     fixedSize?: number;
-    verticalScroll?: IPropsVerticalScroll;
+    scroll?: IPropsScroll;
 }
-interface IPropsVerticalScroll {
+interface IPropsScroll {
     enable: boolean;
     type?: 'inner' | 'outer';
     height?: number;

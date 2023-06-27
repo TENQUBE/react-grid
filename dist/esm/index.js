@@ -115,7 +115,7 @@ function isNotFalse(value) {
 }
 
 const Thead = ({ tableId, tableEl, row, columns, options, sortBy, orderBy, widthList, setWidthList, isOuter = false }) => {
-    const { fixedSize, scalable: { enable, storage }, verticalScroll: { enable: vsEnable, type: vsType, height: vsHeight } } = options;
+    const { fixedSize, scalable: { enable, storage }, scroll: { enable: vsEnable, type: vsType, height: vsHeight } } = options;
     const isStorage = storage.enable ? storage.target : false;
     const isFixedHead = vsEnable && vsType === 'inner' && vsHeight > 0;
     const theadTrEl = useRef(null);
@@ -722,7 +722,7 @@ class Scalable {
         this.storage = new ScalableStorage(storageProps);
     }
 }
-class VerticalScroll {
+class Scroll {
     constructor({ enable, type, height }) {
         if (typeof enable !== 'undefined' && typeof enable !== 'boolean') {
             throw Error('enable is not of type boolean');
@@ -739,7 +739,7 @@ class VerticalScroll {
     }
 }
 class Options {
-    constructor({ scalable, fixedSize, verticalScroll }) {
+    constructor({ scalable, fixedSize, scroll }) {
         var _a, _b;
         if (typeof fixedSize !== 'undefined' && typeof fixedSize !== 'number') {
             throw Error('fixedSize is not of type number');
@@ -754,10 +754,10 @@ class Options {
                 : { enable: true, target: 'session' };
         this.scalable = new Scalable({ enable: scalbleEnable, storage: storageProps });
         this.fixedSize = typeof fixedSize === 'undefined' ? 0 : fixedSize;
-        this.verticalScroll = new VerticalScroll({
-            enable: verticalScroll === null || verticalScroll === void 0 ? void 0 : verticalScroll.enable,
-            type: verticalScroll === null || verticalScroll === void 0 ? void 0 : verticalScroll.type,
-            height: verticalScroll === null || verticalScroll === void 0 ? void 0 : verticalScroll.height
+        this.scroll = new Scroll({
+            enable: scroll === null || scroll === void 0 ? void 0 : scroll.enable,
+            type: scroll === null || scroll === void 0 ? void 0 : scroll.type,
+            height: scroll === null || scroll === void 0 ? void 0 : scroll.height
         });
     }
 }
@@ -840,7 +840,7 @@ const getOptions = (options) => {
                 }
             },
             fixedSize: 0,
-            verticalScroll: {
+            scroll: {
                 enable: false
             }
         };
@@ -856,7 +856,7 @@ const ReactGrid = ({ id, rows, columns: receivedColumns, options: receivedOption
     const options = getOptions(receivedOptions ? receivedOptions : {});
     const columns = getColumns(receivedColumns, { sortBy, setSortBy, orderBy, setOrderBy });
     const isError = !gridDataValidation(columns, rows);
-    const isOuterScroll = options.verticalScroll.enable && options.verticalScroll.type === 'outer';
+    const isOuterScroll = options.scroll.enable && options.scroll.type === 'outer';
     useEffect(() => {
         const newColumnWidth = getColumnWidth(id, gridEl.current, columns, options.scalable);
         if (widthList.length !== newColumnWidth.length
@@ -881,8 +881,8 @@ const ReactGrid = ({ id, rows, columns: receivedColumns, options: receivedOption
             classList.push(styles$3['table-area-outer-mode']);
         return classList.join(' ');
     };
-    return (jsxs("div", Object.assign({ ref: gridEl, className: generateClassName() }, { children: [isOuterScroll && (jsx("div", Object.assign({ className: `scroll-area-outer ${styles$3['scroll-area-outer']}` }, { children: jsx("table", Object.assign({ className: `react-grid react-grid-outer ${styles$3['react-grid']} ${styles$3['react-grid-outer']}` }, { children: jsx(Thead, { tableId: id, tableEl: gridEl.current, row: rows, columns: columns, options: options, sortBy: sortBy, orderBy: orderBy, widthList: widthList, setWidthList: setWidthList, isOuter: true }) })) }))), isError ? (jsx("div", Object.assign({ className: styles$3['error-area'] }, { children: jsx("p", { children: "Data settings are incorrect" }) }))) : (jsx("div", Object.assign({ className: `${styles$3['scroll-area']} ${isOuterScroll ? styles$3['outer-mode'] : ''}`, style: !isOuterScroll && options.verticalScroll.height > 0 ? {
-                    height: `${options.verticalScroll.height}px`,
+    return (jsxs("div", Object.assign({ ref: gridEl, className: generateClassName() }, { children: [isOuterScroll && (jsx("div", Object.assign({ className: `scroll-area-outer ${styles$3['scroll-area-outer']}` }, { children: jsx("table", Object.assign({ className: `react-grid react-grid-outer ${styles$3['react-grid']} ${styles$3['react-grid-outer']}` }, { children: jsx(Thead, { tableId: id, tableEl: gridEl.current, row: rows, columns: columns, options: options, sortBy: sortBy, orderBy: orderBy, widthList: widthList, setWidthList: setWidthList, isOuter: true }) })) }))), isError ? (jsx("div", Object.assign({ className: styles$3['error-area'] }, { children: jsx("p", { children: "Data settings are incorrect" }) }))) : (jsx("div", Object.assign({ className: `${styles$3['scroll-area']} ${isOuterScroll ? styles$3['outer-mode'] : ''}`, style: !isOuterScroll && options.scroll.height > 0 ? {
+                    height: `${options.scroll.height}px`,
                     overflowY: 'auto'
                 } : {} }, { children: jsxs("table", Object.assign({ className: `react-grid ${styles$3['react-grid']}` }, { children: [!isOuterScroll && (jsx(Thead, { tableId: id, tableEl: gridEl.current, row: rows, columns: columns, options: options, sortBy: sortBy, orderBy: orderBy, widthList: widthList, setWidthList: setWidthList })), jsx(Tbody, { tableId: id, rows: rows, columns: columns, options: options, addClassNameByRows: addClassNameByRows, widthList: widthList })] })) })))] })));
 };

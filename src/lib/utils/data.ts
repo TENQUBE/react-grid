@@ -94,7 +94,7 @@ export const getOptions = (options: IPropsOptions): IOptions => {
         }
       },
       fixedSize: 0,
-      verticalScroll: {
+      scroll: {
         enable: false
       }
     }

@@ -35,7 +35,7 @@ const ReactGrid: FC<IProps> = ({
   const columns = getColumns(receivedColumns, { sortBy, setSortBy, orderBy, setOrderBy })
   const isError = !gridDataValidation(columns, rows)
   
-  const isOuterScroll = options.verticalScroll.enable && options.verticalScroll.type === 'outer'
+  const isOuterScroll = options.scroll.enable && options.scroll.type === 'outer'
 
   useEffect(() => {
     const newColumnWidth = getColumnWidth(id, gridEl.current, columns, options.scalable)
@@ -89,8 +89,8 @@ const ReactGrid: FC<IProps> = ({
       ) : (
         <div 
           className={`${styles['scroll-area']} ${isOuterScroll ? styles['outer-mode'] : ''}`} 
-          style={!isOuterScroll && options.verticalScroll.height > 0 ? {
-              height: `${options.verticalScroll.height}px`,
+          style={!isOuterScroll && options.scroll.height > 0 ? {
+              height: `${options.scroll.height}px`,
               overflowY: 'auto'
           } : {}}
         >

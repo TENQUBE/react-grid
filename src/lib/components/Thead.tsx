@@ -23,7 +23,7 @@ interface IProps {
 }
 
 const Thead: FC<IProps> = ({ tableId, tableEl, row, columns, options, sortBy, orderBy, widthList, setWidthList, isOuter=false }) => {
-  const { fixedSize, scalable: { enable, storage }, verticalScroll: { enable: vsEnable, type: vsType, height: vsHeight } } = options
+  const { fixedSize, scalable: { enable, storage }, scroll: { enable: vsEnable, type: vsType, height: vsHeight } } = options
   const isStorage = storage.enable ? storage.target : false
   const isFixedHead = vsEnable && vsType === 'inner' && vsHeight > 0 
 

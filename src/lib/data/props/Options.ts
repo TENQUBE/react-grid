@@ -1,4 +1,4 @@
-import { IPropsOptions, IPropsScalableOption, IPropsStorageOption, IPropsVerticalScroll, IVerticalScroll } from "../../../lib/interfaces"
+import { IPropsOptions, IPropsScalableOption, IPropsScroll, IPropsStorageOption, IScroll } from "../../../lib/interfaces"
 
 class ScalableStorage {
   readonly enable: boolean
@@ -39,12 +39,12 @@ class Scalable {
   }
 }
 
-class VerticalScroll {
+class Scroll {
   readonly enable: boolean
   readonly type: 'inner' | 'outer'
   readonly height: number
 
-  constructor({ enable, type, height }: IPropsVerticalScroll) {
+  constructor({ enable, type, height }: IPropsScroll) {
     if(typeof enable !== 'undefined' && typeof enable !== 'boolean') {
       throw Error('enable is not of type boolean')
     }
@@ -64,9 +64,9 @@ class Options {
   
   readonly scalable: Scalable
   readonly fixedSize: number
-  readonly verticalScroll: IVerticalScroll
+  readonly scroll: IScroll
 
-  constructor({ scalable, fixedSize, verticalScroll }: IPropsOptions) {
+  constructor({ scalable, fixedSize, scroll }: IPropsOptions) {
     if(typeof fixedSize !== 'undefined' && typeof fixedSize !== 'number') {
       throw Error('fixedSize is not of type number')
     }
@@ -81,10 +81,10 @@ class Options {
 
     this.scalable = new Scalable({ enable: scalbleEnable, storage: storageProps })
     this.fixedSize = typeof fixedSize === 'undefined' ? 0 : fixedSize
-    this.verticalScroll = new VerticalScroll({
-      enable: verticalScroll?.enable,
-      type: verticalScroll?.type,
-      height: verticalScroll?.height
+    this.scroll = new Scroll({
+      enable: scroll?.enable,
+      type: scroll?.type,
+      height: scroll?.height
     })
   }
 

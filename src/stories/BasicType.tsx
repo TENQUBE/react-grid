@@ -178,7 +178,7 @@ const Grid: FC = () => {
   const options: IPropsOptions = {
     // fixedSize: 3,
     // scalable: true,
-    verticalScroll: {
+    scroll: {
       enable: true,
       type: 'outer'
       // height: 400,
