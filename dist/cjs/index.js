@@ -783,10 +783,10 @@ const getColumnPrintWidth = (id, gridEl, widthList, scalable) => {
     return newWidthList;
 };
 const getColumnWidth = (id, gridEl, columns, scalable) => {
-    const tableWidth = gridEl.offsetWidth;
+    const tableScrollAreaWidth = gridEl.firstElementChild.clientWidth;
     const specific = columns.reduce((pur, cur) => typeof cur.width === 'undefined' ? pur : pur + cur.width, 0);
     const unspecifiedSize = columns.filter((column) => (typeof column.width === 'undefined' && column.type !== exports.GridType.Hidden)).length;
-    const baseWidth = tableWidth - specific < 50 ? 100 : (tableWidth - specific) / unspecifiedSize;
+    const baseWidth = tableScrollAreaWidth - specific < 50 ? 100 : (tableScrollAreaWidth - specific) / unspecifiedSize;
     const widthList = columns.map((column) => {
         if (column.type === exports.GridType.Hidden)
             return null;
