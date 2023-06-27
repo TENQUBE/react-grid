@@ -1,0 +1,28 @@
+.table-body {
+  border-bottom: 1px solid #D6DEE8;
+  border-right: 1px solid #D6DEE8;
+  // width: 150px;
+  min-width: 40px;
+  // flex: 150 0 auto;
+  &:last-of-type {
+    border-right: 0;
+  }
+}
+
+.type-error-message {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  background: #ff9595;
+  font-size: 12px;
+  margin: 0;
+  padding: 10px;
+}
+
+.fixed {
+  background: #FBFBFE;
+  position: sticky;
+  left: 0;
+} 

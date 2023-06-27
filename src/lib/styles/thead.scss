@@ -1,0 +1,139 @@
+.table-head {
+  position: relative;
+  border-bottom: 1px solid #D6DEE8;
+  border-right: 1px solid #D6DEE8;
+  // width: 150px;
+  min-width: 40px;
+  // flex: 150 0 auto;
+  text-align: left;
+  color: #666;
+  background: #FBFBFE;
+  &:last-of-type {
+    border-right: 0;
+    .resizer {
+      width: 6px;
+      margin-right: 0;
+    }
+  }
+}
+
+.table-head-div {
+  padding: 10px 5px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sorting-table-head {
+  position: relative;
+  padding-right: 30px;
+}
+
+.resizer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 8px;
+  margin-right: -4px;
+  height: 100%;
+  cursor: col-resize;
+  user-select: none;
+  opacity: 0;
+  // opacity: 0.5;
+  // background: red;;
+}
+
+.fixed {
+  background: #FBFBFE;
+  position: sticky;
+  left: 0;
+}
+
+.fiexd-head {
+  position: sticky;
+  top: 0;
+}
+
+.checkbox {
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #A4AABB;
+  border-radius: 4px;
+  background: #fff;
+  position: relative;
+  &::before {
+    content: '';
+    position: absolute;
+    width: 5.8px;
+    height: 1.7px;
+    background: #fff;
+    top: 9.7px;
+    left: 2.6px;
+    border-radius: 3px;
+    transform: rotate(45deg);
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    width: 11.4px;
+    height: 1.7px;
+    background: #fff;
+    top: 8.2px;
+    left: 5.7px;
+    border-radius: 3px;
+    transform: rotate(-45deg);
+  }
+}
+
+.checkbox.active {
+  background-color: #FF3284;
+  border-color: #FF3284;
+}
+
+.sorting-box {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  margin-top: -10px;
+  // cursor: pointer;
+  width: 20px;
+  height: 20px;
+}
+
+.sorting-up {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 5px;
+  width: 0;
+  height: 0;
+  border-bottom: 4px solid transparent;
+  border-top: 4px solid transparent;
+  border-left: 4px solid #CACACA;
+  border-right: 4px solid transparent;
+  transform: rotate(270deg);
+}
+
+.sorting-up.active {
+  border-left: 4px solid #FF3284;
+}
+
+.sorting-down {
+  content: '';
+  position: absolute;
+  top: 10px;
+  right: 5px;
+  width: 0;
+  height: 0;
+  border-bottom: 4px solid transparent;
+  border-top: 4px solid transparent;
+  border-left: 4px solid #CACACA;
+  border-right: 4px solid transparent;
+  transform: rotate(90deg);
+}
+
+.sorting-down.active {
+  border-left: 4px solid #FF3284;
+}
