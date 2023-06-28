@@ -84,9 +84,9 @@ export type RowType = string | number | boolean | ILinkRows | Array<string | num
 export interface IPropsOptions {
     scalable?: boolean | IPropsScalableOption;
     fixedSize?: number;
-    scroll?: IPropsScroll;
+    scroll?: IPropsScrollOption;
 }
-export interface IPropsScroll {
+export interface IPropsScrollOption {
     enable: boolean;
     type?: 'inner' | 'outer';
     height?: number;
@@ -94,9 +94,9 @@ export interface IPropsScroll {
 export interface IOptions {
     scalable: IScalableOption;
     fixedSize: number;
-    scroll: IScroll;
+    scroll: IScrollOption;
 }
-export interface IScroll {
+export interface IScrollOption {
     enable: boolean;
     type?: 'inner' | 'outer';
     height?: number;

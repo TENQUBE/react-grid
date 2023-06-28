@@ -55,9 +55,9 @@ type RowType = string | number | boolean | ILinkRows | Array<string | number> | 
 interface IPropsOptions {
     scalable?: boolean | IPropsScalableOption;
     fixedSize?: number;
-    scroll?: IPropsScroll;
+    scroll?: IPropsScrollOption;
 }
-interface IPropsScroll {
+interface IPropsScrollOption {
     enable: boolean;
     type?: 'inner' | 'outer';
     height?: number;
@@ -80,4 +80,4 @@ interface IProps {
 }
 declare const ReactGrid: FC<IProps>;
 
-export { EditType, GridType, IClassNameByRow, IInitialValues, ILinkRows, IPropsColumn, IPropsOptions, IPropsScalableOption, IPropsStorageOption, OrderType, RowType, ReactGrid as default };
+export { EditType, GridType, IClassNameByRow, IInitialValues, ILinkRows, IPropsColumn, IPropsOptions, IPropsScalableOption, IPropsScrollOption, IPropsStorageOption, OrderType, RowType, ReactGrid as default };

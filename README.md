@@ -10,7 +10,7 @@ It is composed of React components and can be implemented easily and intuitively
 > It is still an early version, so there may be unstable parts. Please register the problematic part as an issue on GitHub.
   
 ## Version
-v1.0.4
+v1.0.5
 
 ## Features 
 ### Change and remember column width. 
@@ -276,7 +276,7 @@ enum OrderType {
 interface IPropsOptions {
   scalable?: boolean | IPropsScalableOption
   fixedSize?: number
-  verticalScroll?: IPropsVerticalScroll
+  scroll?: IPropsScrollOption
 }
 ```
 
@@ -295,7 +295,7 @@ interface IPropsStorageOption {
 ```
 
 ```ts
-export interface IPropsVerticalScroll {
+export interface IPropsScrollOption {
   enable: boolean,
   type?: 'inner' | 'outer'
   height?: number

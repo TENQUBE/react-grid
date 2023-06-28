@@ -2,7 +2,7 @@ import { FC, useEffect, useRef, useState } from 'react'
 
 import styles from './styles/main.scss'
 
-import { IPropsColumn, GridType, IPropsOptions, EditType, RowType, OrderType, IInitialValues, ILinkRows, IClassNameByRow, IPropsScalableOption, IPropsStorageOption } from './interfaces'
+import { IPropsColumn, GridType, IPropsOptions, EditType, RowType, OrderType, IInitialValues, ILinkRows, IClassNameByRow, IPropsScalableOption, IPropsStorageOption, IPropsScrollOption } from './interfaces'
 
 import Thead from './components/Thead'
 import Tbody from './components/Tbody'
@@ -124,4 +124,4 @@ const ReactGrid: FC<IProps> = ({
 }
 
 export default ReactGrid
-export { GridType, EditType, OrderType, RowType, ILinkRows, IPropsColumn, IPropsOptions, IInitialValues, IClassNameByRow, IPropsScalableOption, IPropsStorageOption }
+export { GridType, EditType, OrderType, RowType, ILinkRows, IPropsColumn, IPropsOptions, IInitialValues, IClassNameByRow, IPropsScalableOption, IPropsStorageOption, IPropsScrollOption }

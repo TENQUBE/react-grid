@@ -1,4 +1,4 @@
-import { IPropsOptions, IPropsScalableOption, IPropsScroll, IPropsStorageOption, IScroll } from "../../../lib/interfaces"
+import { IPropsOptions, IPropsScalableOption, IPropsScrollOption, IPropsStorageOption, IScrollOption } from "../../../lib/interfaces"
 
 class ScalableStorage {
   readonly enable: boolean
@@ -44,7 +44,7 @@ class Scroll {
   readonly type: 'inner' | 'outer'
   readonly height: number
 
-  constructor({ enable, type, height }: IPropsScroll) {
+  constructor({ enable, type, height }: IPropsScrollOption) {
     if(typeof enable !== 'undefined' && typeof enable !== 'boolean') {
       throw Error('enable is not of type boolean')
     }
@@ -64,7 +64,7 @@ class Options {
   
   readonly scalable: Scalable
   readonly fixedSize: number
-  readonly scroll: IScroll
+  readonly scroll: IScrollOption
 
   constructor({ scalable, fixedSize, scroll }: IPropsOptions) {
     if(typeof fixedSize !== 'undefined' && typeof fixedSize !== 'number') {

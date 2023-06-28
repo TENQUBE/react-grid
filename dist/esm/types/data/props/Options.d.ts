@@ -1,4 +1,4 @@
-import { IPropsOptions, IPropsScalableOption, IPropsStorageOption, IScroll } from "../../../lib/interfaces";
+import { IPropsOptions, IPropsScalableOption, IPropsStorageOption, IScrollOption } from "../../../lib/interfaces";
 declare class ScalableStorage {
     readonly enable: boolean;
     readonly target?: 'local' | 'session';
@@ -12,7 +12,7 @@ declare class Scalable {
 declare class Options {
     readonly scalable: Scalable;
     readonly fixedSize: number;
-    readonly scroll: IScroll;
+    readonly scroll: IScrollOption;
     constructor({ scalable, fixedSize, scroll }: IPropsOptions);
 }
 export default Options;
