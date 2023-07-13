@@ -7,6 +7,8 @@ interface IParmas {
     width?: number;
     name?: string;
     className?: string;
+    isSorting?: boolean;
+    callback?: Function;
 }
 declare class ItemsColumn {
     readonly id: string;
@@ -15,6 +17,8 @@ declare class ItemsColumn {
     readonly width?: number;
     readonly name: string;
     readonly className: string;
-    constructor({ id, type, items, width, name, className }: IParmas);
+    readonly isSorting: boolean;
+    readonly callback: Function;
+    constructor({ id, type, items, width, name, className, isSorting, callback }: IParmas);
 }
 export default ItemsColumn;

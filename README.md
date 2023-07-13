@@ -10,7 +10,7 @@ It is composed of React components and can be implemented easily and intuitively
 > It is still an early version, so there may be unstable parts. Please register the problematic part as an issue on GitHub.
   
 ## Version
-v1.0.5
+v1.0.6
 
 ## Features 
 ### Change and remember column width. 
@@ -222,7 +222,9 @@ interface IPropsColumn {
   items: Array<FC<{ rowIdx: number; columnIdx: number }> | ReactNode>
   width?: number
   name?: string
-  className?: string,
+  className?: string
+  isSorting?: boolean
+  callback?: (columnId: string, orderType: OrderType) => void // callback by sorting
 }
 ```
 
@@ -234,7 +236,7 @@ interface IPropsColumn {
   callback: (rowIdx: number, columnIdx: number, value: string | number) => void
   width?: number
   name?: string
-  className?: string,
+  className?: string
 }
 ```
 
@@ -245,7 +247,7 @@ interface IPropsColumn {
   type: GridType.Array
   width?: number
   name?: string
-  className?: string,
+  className?: string
 }
 ```
 

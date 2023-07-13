@@ -132,14 +132,15 @@ const Thead = ({ tableId, tableEl, row, columns, options, sortBy, orderBy, width
         };
     };
     const handleDrag = (e, idx) => {
+        var _a;
         const columns = document.getElementsByClassName(getResizeColumnClassName(tableId, idx));
         const moveSize = (e.clientX - resizeRef.current.position);
         const endSize = resizeRef.current.size + moveSize;
-        const setSize = (endSize < 0 || endSize > 40) ? endSize : 40;
+        const minWidth = parseInt((_a = getComputedStyle(columns[idx])) === null || _a === void 0 ? void 0 : _a.minWidth, 10);
+        const setSize = (endSize < 0 || endSize > minWidth) ? endSize : minWidth;
         fixedLeftResize(fixedSize, tableId, setSize, idx);
         for (const column of columns) {
             column.style.width = `${setSize}px`;
-            // ;(column as HTMLElement).style.flex = `${setSize} 0 auto`
         }
     };
     const handleDragEnd = () => {
@@ -540,7 +541,7 @@ class InputColumn {
 }
 
 class ItemsColumn {
-    constructor({ id, type, items, width, name = '', className = '' }) {
+    constructor({ id, type, items, width, name = '', className = '', isSorting = false, callback = () => { } }) {
         if (!id)
             throw Error('id value does not exist');
         if (type !== GridType.Items)
@@ -551,8 +552,12 @@ class ItemsColumn {
             throw Error('width is not of type number');
         if (typeof name !== 'string')
             throw Error('name is not of type string');
+        if (typeof callback !== 'function')
+            throw Error('callback is not of type function');
         if (typeof className !== 'string')
             throw Error('className is not of type string');
+        if (typeof isSorting !== 'boolean')
+            throw Error('isSorting is not of type boolean');
         this.items = items;
         this.id = id;
         this.type = type;
@@ -560,6 +565,8 @@ class ItemsColumn {
             this.width = width;
         this.name = name;
         this.className = className;
+        this.isSorting = isSorting;
+        this.callback = callback;
     }
 }
 
@@ -673,7 +680,7 @@ class ColumnPropsGenerator {
                     case GridType.InputNumber:
                         return new InputColumn({ id, type, callback, width, name, className });
                     case GridType.Items:
-                        return new ItemsColumn({ id, type, items, width, name, className });
+                        return new ItemsColumn({ id, type, items, width, name, className, isSorting, callback });
                     case GridType.Link:
                         return new LinkColumn({ id, type, width, name, className, isSorting, callback });
                     case GridType.String:

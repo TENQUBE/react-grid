@@ -48,13 +48,13 @@ const Thead: FC<IProps> = ({ tableId, tableEl, row, columns, options, sortBy, or
     const columns = document.getElementsByClassName(getResizeColumnClassName(tableId, idx))
     const moveSize = (e.clientX - resizeRef.current.position)
     const endSize = resizeRef.current.size + moveSize
-    const setSize = (endSize < 0 || endSize > 40) ? endSize : 40
+    const minWidth = parseInt(getComputedStyle(columns[idx])?.minWidth, 10)
+    const setSize = (endSize < 0 || endSize > minWidth) ? endSize : minWidth
 
-    fixedLeftResize (fixedSize, tableId, setSize, idx)
+    fixedLeftResize(fixedSize, tableId, setSize, idx)
 
     for (const column of columns) {
       ;(column as HTMLElement).style.width = `${setSize}px`
-      // ;(column as HTMLElement).style.flex = `${setSize} 0 auto`
     }
   }
 

@@ -33,7 +33,7 @@ class ColumnPropsGenerator {
           case GridType.InputNumber:
             return new InputColumn({ id, type, callback, width, name, className })
           case GridType.Items:
-            return new ItemsColumn({ id, type, items, width, name, className })
+            return new ItemsColumn({ id, type, items, width, name, className, isSorting, callback })
           case GridType.Link:
             return new LinkColumn({ id, type, width, name, className, isSorting, callback })
           case GridType.String:
