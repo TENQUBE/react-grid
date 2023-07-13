@@ -48,7 +48,7 @@ const Thead: FC<IProps> = ({ tableId, tableEl, row, columns, options, sortBy, or
     const columns = document.getElementsByClassName(getResizeColumnClassName(tableId, idx))
     const moveSize = (e.clientX - resizeRef.current.position)
     const endSize = resizeRef.current.size + moveSize
-    const minWidth = parseInt(getComputedStyle(columns[idx])?.minWidth, 10)
+    const minWidth = parseInt(getComputedStyle(columns[0])?.minWidth, 10)
     const setSize = (endSize < 0 || endSize > minWidth) ? endSize : minWidth
 
     fixedLeftResize(fixedSize, tableId, setSize, idx)

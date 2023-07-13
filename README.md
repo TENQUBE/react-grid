@@ -10,7 +10,7 @@ It is composed of React components and can be implemented easily and intuitively
 > It is still an early version, so there may be unstable parts. Please register the problematic part as an issue on GitHub.
   
 ## Version
-v1.0.6
+v1.0.7
 
 ## Features 
 ### Change and remember column width. 

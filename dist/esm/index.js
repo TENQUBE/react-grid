@@ -136,7 +136,7 @@ const Thead = ({ tableId, tableEl, row, columns, options, sortBy, orderBy, width
         const columns = document.getElementsByClassName(getResizeColumnClassName(tableId, idx));
         const moveSize = (e.clientX - resizeRef.current.position);
         const endSize = resizeRef.current.size + moveSize;
-        const minWidth = parseInt((_a = getComputedStyle(columns[idx])) === null || _a === void 0 ? void 0 : _a.minWidth, 10);
+        const minWidth = parseInt((_a = getComputedStyle(columns[0])) === null || _a === void 0 ? void 0 : _a.minWidth, 10);
         const setSize = (endSize < 0 || endSize > minWidth) ? endSize : minWidth;
         fixedLeftResize(fixedSize, tableId, setSize, idx);
         for (const column of columns) {
