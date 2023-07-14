@@ -64,7 +64,7 @@ const ReactGrid: FC<IProps> = ({
     <div ref={gridEl} className={generateClassName()}>
       {
         isOuterScroll && (
-          <div className={`scroll-area-outer ${styles['scroll-area-outer']}`}>
+          <div className={`react-grid-scroll-area-outer ${styles['scroll-area-outer']}`}>
             <table className={`react-grid react-grid-outer ${styles['react-grid']} ${styles['react-grid-outer']}`}>
               <Thead 
                 tableId={id} 
@@ -88,7 +88,7 @@ const ReactGrid: FC<IProps> = ({
         </div>
       ) : (
         <div 
-          className={`${styles['scroll-area']} ${isOuterScroll ? styles['outer-mode'] : ''}`} 
+          className={`react-grid-scroll-area ${styles['scroll-area']} ${isOuterScroll ? styles['outer-mode'] : ''}`} 
           style={!isOuterScroll && options.scroll.height > 0 ? {
               height: `${options.scroll.height}px`,
               overflowY: 'auto'
