@@ -1,15 +1,20 @@
 import { GridType, IColumn, ILinkRows, RowType } from '../interfaces'
 
-export const cacheWidthValidation = (cacheData: string, columnLength: number) => {
+export const cacheWidthValidation = (cacheData: string, columns: IColumn[]) => {
   if(!cacheData) return false
 
   try {
-    const cacheWidth = JSON.parse(cacheData)
-    if(!Array.isArray(cacheWidth)) return false
-    if(cacheWidth.some((width) => typeof width !== 'number' && width !== null)) return false
-    if(cacheWidth.length !== columnLength) return false
+    const cacheWidths = JSON.parse(cacheData)
     
-    return cacheWidth
+    if(!Array.isArray(cacheWidths)) return false
+    if(cacheWidths.some((width) => typeof width !== 'number' && width !== null)) return false
+    if(cacheWidths.length !== columns.length) return false
+    if(cacheWidths.some((width, i) => {
+      return (columns[i].type === GridType.Hidden && width !== null)
+        || (columns[i].type !== GridType.Hidden && width === null)
+    })) return false
+    
+    return cacheWidths
   } catch {
     return false
   }

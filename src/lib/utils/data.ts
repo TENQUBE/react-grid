@@ -40,7 +40,7 @@ export const getColumnWidth = (id: string, gridEl: HTMLDivElement, columns: ICol
   
   const target = scalable.storage.target === 'local' ? window.localStorage : window.sessionStorage
   const cacheByWidth = target.getItem(getStorageNameByWidths(id))
-  const vaidatedCacheWidth = cacheWidthValidation(cacheByWidth, columns.length)
+  const vaidatedCacheWidth = cacheWidthValidation(cacheByWidth, columns)
 
   return vaidatedCacheWidth ? vaidatedCacheWidth : widthList
 }

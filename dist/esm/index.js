@@ -199,18 +199,23 @@ var css_248z$1 = ".tbody_table-body__g3m5L {\n  border-bottom: 1px solid #D6DEE8
 var styles$1 = {"table-body":"tbody_table-body__g3m5L","type-error-message":"tbody_type-error-message__b1eFE","fixed":"tbody_fixed__OSL8Q"};
 styleInject(css_248z$1);
 
-const cacheWidthValidation = (cacheData, columnLength) => {
+const cacheWidthValidation = (cacheData, columns) => {
     if (!cacheData)
         return false;
     try {
-        const cacheWidth = JSON.parse(cacheData);
-        if (!Array.isArray(cacheWidth))
+        const cacheWidths = JSON.parse(cacheData);
+        if (!Array.isArray(cacheWidths))
             return false;
-        if (cacheWidth.some((width) => typeof width !== 'number' && width !== null))
+        if (cacheWidths.some((width) => typeof width !== 'number' && width !== null))
             return false;
-        if (cacheWidth.length !== columnLength)
+        if (cacheWidths.length !== columns.length)
             return false;
-        return cacheWidth;
+        if (cacheWidths.some((width, i) => {
+            return (columns[i].type === GridType.Hidden && width !== null)
+                || (columns[i].type !== GridType.Hidden && width === null);
+        }))
+            return false;
+        return cacheWidths;
     }
     catch (_a) {
         return false;
@@ -799,7 +804,7 @@ const getColumnWidth = (id, gridEl, columns, scalable) => {
         return widthList;
     const target = scalable.storage.target === 'local' ? window.localStorage : window.sessionStorage;
     const cacheByWidth = target.getItem(getStorageNameByWidths(id));
-    const vaidatedCacheWidth = cacheWidthValidation(cacheByWidth, columns.length);
+    const vaidatedCacheWidth = cacheWidthValidation(cacheByWidth, columns);
     return vaidatedCacheWidth ? vaidatedCacheWidth : widthList;
 };
 const getColumns = (propsColumns, { sortBy, setSortBy, orderBy, setOrderBy }) => {
