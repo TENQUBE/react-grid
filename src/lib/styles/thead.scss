@@ -23,10 +23,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.sorting-table-head {
-  position: relative;
 
   span {
     width: 100%;
@@ -35,6 +31,10 @@
     text-overflow: ellipsis;
     white-space: nowrap;
   }
+}
+
+.sorting-table-head {
+  position: relative;
 }
 
 .resizer {
