@@ -2,6 +2,7 @@ import React, { FC, useRef, useState } from 'react'
 
 import ReactGrid, { GridType } from '../../dist/cjs'
 import { RowType, OrderType, IPropsColumn, IPropsOptions } from '../lib/interfaces'
+import styled from 'styled-components'
 
 const ItemComp = ({ test }) => {
   return (<p>{ test }</p>)
@@ -110,7 +111,7 @@ const Grid: FC = () => {
     type: GridType.Hidden
   }, {
     id: '3',
-    name: 'string2',
+    name: '가나다라 마바사아',
     type: GridType.String,
     isSorting: true,
     callback: (columnId: string, orderType: OrderType) => {
@@ -215,15 +216,15 @@ const Grid: FC = () => {
       // overflow: 'auto',
       width: '800px'
     }}>
-      <div style={{
-        // maxWidth: '800px',
-        // margin: '0 auto',
-        // height: '2000px'
-      }}>
+      <$area>
         <ReactGrid id="a" columns={columns} rows={rows} options={options} addClassNameByRows={addClassNameByRows} />
-      </div>
+      </$area>
     </div>
   )
 }
 
 export default Grid
+
+const $area = styled.div`
+  
+`
