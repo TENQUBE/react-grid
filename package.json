@@ -1,6 +1,6 @@
 {
   "name": "@tenqube/react-grid",
-  "version": "1.0.11",
+  "version": "1.0.13",
   "description": "A data grid for React",
   "keywords": [
     "react",
@@ -69,5 +69,9 @@
   "types": "dist/index.d.ts",
   "files": [
     "dist"
-  ]
+  ],
+  "dependencies": {
+    "@tenqube/react-grid": "^1.0.11",
+    "styled-components": "^6.0.7"
+  }
 }
