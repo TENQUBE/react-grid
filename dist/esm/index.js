@@ -102,7 +102,7 @@ const fixedLeftResize = (fixedSize, tableId, setSize, idx) => {
         const { width, left } = document.getElementsByClassName(getResizeColumnClassName(tableId, i))[0].style;
         const columns = document.getElementsByClassName(getResizeColumnClassName(tableId, i + 1));
         for (const column of columns) {
-            const leftNo = parseInt(width) + parseInt(left);
+            const leftNo = parseInt(width, 10) + parseInt(left, 10);
             if (leftNo > 0) {
                 column.style.left = `${leftNo}px`;
             }
@@ -149,7 +149,7 @@ const Thead = ({ tableId, tableEl, row, columns, options, sortBy, orderBy, width
         const widthList = columns.map(({ type }) => {
             if (type === GridType.Hidden)
                 return null;
-            const width = parseInt(columnEls[loopIdx].style.width);
+            const width = parseInt(columnEls[loopIdx].style.width, 10);
             loopIdx += 1;
             return width;
         });
@@ -778,12 +778,14 @@ const getColumnPrintWidth = (id, gridEl, widthList, scalable) => {
     let loopIdx = 0;
     const tableEl = gridEl.getElementsByClassName('react-grid')[0];
     const newWidthList = widthList.map((width) => {
+        var _a;
         if (width === null)
             return null;
         const target = tableEl.firstElementChild.firstElementChild.children[loopIdx];
-        const minWidth = parseInt(window.getComputedStyle(target, null).getPropertyValue("min-width"), 0);
+        const targetWidth = parseInt((_a = target === null || target === void 0 ? void 0 : target.style) === null || _a === void 0 ? void 0 : _a.width, 10) || target.clientWidth;
+        const minWidth = parseInt(window.getComputedStyle(target, null).getPropertyValue("min-width"), 10);
         loopIdx += 1;
-        return target.clientWidth > minWidth ? target.clientWidth : minWidth;
+        return targetWidth > minWidth ? targetWidth : minWidth;
     });
     if (scalable.enable && scalable.storage.enable) {
         const target = scalable.storage.target === 'local' ? window.localStorage : window.sessionStorage;

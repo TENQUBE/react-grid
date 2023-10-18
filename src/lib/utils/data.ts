@@ -12,10 +12,11 @@ export const getColumnPrintWidth = (id: string, gridEl: HTMLDivElement, widthLis
   const newWidthList = widthList.map((width) => {
     if(width === null) return null
     const target = tableEl.firstElementChild.firstElementChild.children[loopIdx] as HTMLTableElement
-    const minWidth = parseInt(window.getComputedStyle(target,null).getPropertyValue("min-width"), 0)
+    const targetWidth = parseInt(target?.style?.width, 10) || target.clientWidth
+    const minWidth = parseInt(window.getComputedStyle(target, null).getPropertyValue("min-width"), 10)
     loopIdx += 1
-    
-    return target.clientWidth > minWidth ? target.clientWidth : minWidth 
+  
+    return targetWidth > minWidth ? targetWidth : minWidth 
   })
 
   if(scalable.enable && scalable.storage.enable) {
