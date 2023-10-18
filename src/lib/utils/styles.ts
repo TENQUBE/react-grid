@@ -21,7 +21,7 @@ export const fixedLeftResize = (fixedSize:number, tableId: string, setSize: numb
     const { width, left } = (document.getElementsByClassName(getResizeColumnClassName(tableId, i))[0] as HTMLElement).style
     const columns = document.getElementsByClassName(getResizeColumnClassName(tableId, i+1))
     for (const column of columns) {
-      const leftNo = parseInt(width) + parseInt(left)
+      const leftNo = parseInt(width, 10) + parseInt(left, 10)
       if(leftNo > 0) {
         ;(column as HTMLElement).style.left = `${leftNo}px`
       }

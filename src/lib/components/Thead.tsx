@@ -64,7 +64,7 @@ const Thead: FC<IProps> = ({ tableId, tableEl, row, columns, options, sortBy, or
     const widthList = columns.map(({ type }) => {
       if(type === GridType.Hidden) return null
 
-      const width = parseInt((columnEls[loopIdx] as HTMLElement).style.width)
+      const width = parseInt((columnEls[loopIdx] as HTMLElement).style.width, 10)
       loopIdx += 1
       return width
     })
